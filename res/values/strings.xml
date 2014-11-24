@@ -4,4 +4,14 @@
     <string name="app_name">Blazed maze</string>
     <string name="hello_world">Hello world!</string>
 
+    <color name="startPointColor">#CC9900</color>
+    <color name="finishPointColor">#3D1F00</color>
+    <color name="gameBallColor">#4B647D</color>
+    <color name="backgroundColor">#999966</color>
+    <color name="wallColor">#993333</color>
+
+    <string name="startGame">Start Game</string>
+    <string name="exitGame">Exit</string>
+    <string name="title_activity_game">GameActivity</string>
+
 </resources>
