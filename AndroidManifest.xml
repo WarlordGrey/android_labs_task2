@@ -23,8 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="android.lab2.maze.ui.GameActivity"
+            android:name=".ui.GameActivity"
             android:label="@string/title_activity_game" >
+        </activity>
+        <activity
+            android:name="android.lab2.maze.ui.WinActivity"
+            android:label="@string/title_activity_win" >
         </activity>
     </application>
 

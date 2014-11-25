@@ -21,7 +21,7 @@ public class StandartLevel extends Level {
 	private static int [] WALL_ARRAY = {
 		100,	000,	111,	380,
 		0,		450,	200,	450,
-		220,	60,		200,	450,
+		200,	80,		200,	450,
 		280,	0,		300,	150,
 		300,	150,	400,	70,
 		470,	80,		450,	480,

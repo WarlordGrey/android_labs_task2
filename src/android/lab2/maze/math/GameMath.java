@@ -8,6 +8,22 @@ import android.lab2.maze.exceptions.DiscriminantLessThanZero;
 public class GameMath {
 	
 	public static boolean isLineHasPoint(Point startPoint, Point endPoint, Point point){
+		if (
+				(startPoint.x == endPoint.x)
+				&& (startPoint.x == point.x)
+				&& (
+						(
+								(point.y>=startPoint.y)
+								&& (endPoint.y>=point.y)
+						)
+						|| (
+								(startPoint.y>=point.y)
+								&& (point.y>=endPoint.y)
+						) 
+				   )
+		){
+			return true;
+		}	
 		double a = (startPoint.y-endPoint.y)/(double)(startPoint.x-endPoint.x);
 		double b = ((startPoint.y+endPoint.y)-a*(startPoint.x+endPoint.x))/2;
 		return ( 
@@ -76,36 +92,64 @@ public class GameMath {
 			Point lineStart,
 			Point lineEnd
 	)throws DiscriminantLessThanZero{
-		LineFunctionKoefs koefs = getLineFunctionKoefsFromLineEquationKoefs(
-				lineStart, lineEnd
-		);
-		double aEquation = koefs.k*koefs.k + 1;
-		double bEquation = 2*(koefs.k*koefs.b-roundCenter.x-koefs.k*roundCenter.y);
-		double cEquation = 
-				roundCenter.x*roundCenter.x
-				+ koefs.b*koefs.b
-				- 2*koefs.b*roundCenter.y
-				+ roundCenter.y*roundCenter.y
-				- radius*radius;
-		QuadraticEquationResult equatationRoots = getXFromQuadraticEquation(
-				new QuadraticEquationKoefs(aEquation, bEquation, cEquation)
-		);
-		return new Point []{
-			new Point(
-					(int)Math.round(equatationRoots.x1),
-					getYFromLinearFunction(
-							(int)Math.round(equatationRoots.x1),
-							koefs
+		double aEquation;
+		double bEquation;
+		double cEquation;
+		if (lineStart.x == lineEnd.x){
+			aEquation = 1;
+			bEquation = - 2*roundCenter.y;
+			cEquation = 
+					lineStart.x*lineStart.x
+					- radius*radius
+					- 2*lineStart.x*roundCenter.x
+					+roundCenter.x*roundCenter.x
+					+roundCenter.y*roundCenter.y;
+			QuadraticEquationResult equatationRoots = getXFromQuadraticEquation(
+					new QuadraticEquationKoefs(aEquation, bEquation, cEquation)
+			);
+			return new Point []{
+					new Point(
+							lineStart.x,
+							(int)Math.round(equatationRoots.x1)
+					),
+					new Point(
+							lineStart.x,
+							(int)Math.round(equatationRoots.x2)
 					)
-			),
-			new Point(
-					(int)Math.round(equatationRoots.x2),
-					getYFromLinearFunction(
-							(int)Math.round(equatationRoots.x2),
-							koefs
-					)
-			)
-		};
+			};
+		} else {
+			LineFunctionKoefs koefs = getLineFunctionKoefsFromLineEquationKoefs(
+					lineStart, lineEnd
+			);
+			aEquation = koefs.k*koefs.k + 1;
+			bEquation = 2*(koefs.k*koefs.b-roundCenter.x-koefs.k*roundCenter.y);
+			cEquation = 
+					roundCenter.x*roundCenter.x
+					+ koefs.b*koefs.b
+					- 2*koefs.b*roundCenter.y
+					+ roundCenter.y*roundCenter.y
+					- radius*radius;
+			QuadraticEquationResult equatationRoots = getXFromQuadraticEquation(
+					new QuadraticEquationKoefs(aEquation, bEquation, cEquation)
+			);
+			return new Point []{
+				new Point(
+						(int)Math.round(equatationRoots.x1),
+						getYFromLinearFunction(
+								(int)Math.round(equatationRoots.x1),
+								koefs
+						)
+				),
+				new Point(
+						(int)Math.round(equatationRoots.x2),
+						getYFromLinearFunction(
+								(int)Math.round(equatationRoots.x2),
+								koefs
+						)
+				)
+			};
+		}
+		
 	}
 	
 	public static LineFunctionKoefs getLineFunctionKoefsFromLineEquationKoefs(
