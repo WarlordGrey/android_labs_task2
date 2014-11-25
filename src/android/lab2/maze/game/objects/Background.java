@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.lab2.maze.math.GameMath;
+
 import android.view.View;
 
 public class Background implements IDraw{
@@ -39,5 +40,6 @@ public class Background implements IDraw{
 			rect
 		);
 	}
+
 
 }

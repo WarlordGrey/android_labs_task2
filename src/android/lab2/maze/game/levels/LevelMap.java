@@ -20,6 +20,7 @@ public class LevelMap {
 	public LevelMap(View currentView){
 		currentLevel = new StandartLevel(currentView);
 		additionalInit();
+
 	}
 	
 	public LevelMap(Level level){

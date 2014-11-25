@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.lab2.maze.exceptions.DiscriminantLessThanZero;
 
+
 public class GameMath {
 	
 	public static boolean isLineHasPoint(Point startPoint, Point endPoint, Point point){
@@ -28,8 +29,7 @@ public class GameMath {
 			Point lineStart,
 			Point lineEnd,
 			Point point
-	){
-		
+	){	
 		return (point.x - lineStart.x)
 				* (lineEnd.y - lineStart.y)
 				- (point.y - lineStart.y)

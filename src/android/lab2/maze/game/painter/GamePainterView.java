@@ -3,7 +3,6 @@ package android.lab2.maze.game.painter;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.lab2.maze.ui.GameActivity;
-import android.lab2.maze.ui.MainActivity;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
